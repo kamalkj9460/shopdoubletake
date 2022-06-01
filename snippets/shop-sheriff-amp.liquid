@@ -1,0 +1,45 @@
+{% comment %}Managed by ShopSheriff Shopify app{% endcomment %}
+
+{% if template == 'blog' %}
+  {% unless blog.handle == 'all' %}
+  {% unless current_tags %}
+    {% assign amp_path = '/blogs/' | append: blog.handle %}
+    {% if current_page > 1 %}
+    {% assign amp_path = amp_path | append: '?page=' | append: current_page %}
+    {% endif %}
+  {% endunless %}
+  {% assign ssmeta = blog.metafields.shopsheriff %}
+  {% if ssmeta %}
+    {% assign ssMetaVisible = blog.metafields.shopsheriff.amp-visibility %}
+    {% if ssMetaVisible == 0 %}
+      {% assign denyAmp = true %}
+    {% endif %}
+  {% endif %}
+  {% endunless %}
+{% endif %}
+{% if template == 'article' %}
+  {% for tag in article.tags %}
+  {% if tag == 'quiz' %}
+  {% assign denyAmp = true %}
+  {% endif %}
+  {% endfor %}
+  
+  {% assign amp_path = '' | append: article.url %}
+{% endif %}
+{% if template == 'page' %}
+  {% assign amp_path = '/pages/' | append : page.handle %}
+  {% assign ssmeta = page.metafields.shopsheriff %}
+  {% if ssmeta %}
+    {% assign ssMetaVisible = page.metafields.shopsheriff.amp-visibility %}
+    {% if ssMetaVisible == 0 %}
+      {% assign denyAmp = true %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+      
+{% comment %} do not modify {% endcomment %}
+{% unless denyAmp %}
+{% if amp_path %}
+   <link rel="amphtml" href="{{ 'https://' | append: 'www.shopdoubletake.com/a/s' | append: amp_path  }}">
+{% endif %}
+{% endunless %}

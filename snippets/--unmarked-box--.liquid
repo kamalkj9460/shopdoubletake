@@ -1,0 +1,104 @@
+{% if cart != empty %}
+<div class="giftWrapContainer">
+  <gift-wrap data-variant-id="{{variant_id}}" data-product-id="{{product.id}}">
+    <p class="cart-attribute__field" form="cart" id="unmarked_box">
+      <label>
+        <input form="cart" type="hidden" name="attributes[{{settings.attribute_name}}]" value="No">
+        <input form="cart" type="checkbox" name="attributes[{{settings.attribute_name}}]" value="Yes"{% if cart.attributes[settings.attribute_name] == "Yes" %} checked{% endif %}>
+      {{settings.checkbox_label}}
+      </label>
+    </p>
+
+    <div class="cart__note field giftWrapNote">
+      <label for="attributeNote">{{settings.note_label}}</label>
+      <textarea form="cart" class="text-area field__input" id="attributeNote" name="attributes[gift-note]" placeholder="{{ 'sections.cart.note' | t }}"></textarea>
+    </div>
+{% endif %}
+<style>
+  .giftWrapContainer {
+    position: relative;
+    width: var(--page-width);
+      }
+  
+  .giftWrapNote {
+    margin-top: 4.5rem;
+  }
+
+  .checkHide {
+    display: none !important
+  }
+
+  .cart-attribute__field a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .cart-attribute__field.select {
+    display: flex;
+    position: relative;
+    width: 30%;
+    min-width: 25rem;
+    height: 7rem;
+    flex-direction: column;
+  }
+
+  .cart-attribute__field.select > select {
+    outline: 0.2rem solid rgba(var(--color-foreground),.5);
+      outline-offset: 0.3rem;
+      box-shadow: 0 0 0 0.3rem rgb(var(--color-background)),0 0 0.5rem 0.4rem rgba(var(--color-foreground),.3);
+        }
+
+  .cart-attribute__field.select::before, .cart-attribute__field.select::after{
+    display: none !important
+  }
+
+  .cart-attribute__field.select > select::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: var(--inputs-radius-outset);
+      box-shadow: var(--inputs-shadow-horizontal-offset) var(--inputs-shadow-vertical-offset) var(--inputs-shadow-blur-radius) rgba(var(--color-base-text),var(--inputs-shadow-opacity));
+        z-index: -1;
+        }
+
+  .cart-attribute__field.select > select::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: var(--inputs-border-width);
+      right: var(--inputs-border-width);
+        bottom: var(--inputs-border-width);
+          left: var(--inputs-border-width);
+            border: 0.1rem solid transparent;
+            border-radius: var(--inputs-radius);
+              box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground),var(--inputs-border-opacity));
+                transition: box-shadow var(--duration-short) ease;
+                  z-index: 1;
+                  }
+
+  .cart-attribute__field.select svg {
+    top: calc(68% - 0.2rem);
+  }
+
+  .is-empty .giftWrapContainer {
+    display: none;
+  }
+  
+  .cart-attribute__field a {
+    color: unset;
+  }
+
+  .cart-attribute__field a:before {
+    content: '';
+    position: absolute;
+    height: 26px;
+    width: 30px;
+    z-index: 1;
+    left: 0;
+  }
+</style>
+
