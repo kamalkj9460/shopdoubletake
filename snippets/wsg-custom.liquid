@@ -6,8 +6,8 @@ Modifying this file can break Wholesale Gorilla or cause other unintended issues
 If you need to modify this file please contact us first: support@wholesalegorilla.net
 {% endcomment %}
 
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
+<script type="lazyload2">
+  setTimeout(function() {
     const style = document.getElementById('wsg-custom-style');
     if (typeof window.isWsgCustomer != "undefined" && isWsgCustomer) {
       style.innerHTML = `

@@ -1,0 +1,152 @@
+<!-- BEGIN app block: shopify://apps/wholesale-gorilla/blocks/wsg-header/c48d0487-dff9-41a4-94c8-ec6173fe8b8d -->
+<!-- check for active ws customer --><!-- redirect to ws-cart -->
+<!-- added a check for a certain shop to skip the redirect -->
+<!-- ajax data  -->
+<!-- product data -->
+<script type="lazyload2">
+  //==========================================
+  //      Set global liquid variables
+  //==========================================
+  //general variables
+  var wsgVersion = 6.0;
+  var wsgActive = true;
+  var isWsgCustomer = false;
+  var wsgRunCollection;
+  var wsgBetaRestrictedCart = true;
+  var wsgCollectionObserver;
+  var wsgRunProduct;
+  var wsgRunAccount;
+  var wsgRunCart;
+  var wsgCartObserver = false;
+  var wsgShopCountryCode = "US";
+  var wsgRunSinglePage;
+  var wsgRunSignup;
+  var wsgRunSignupV2;
+  //AJAX variables
+  var wsgRunAjax;
+  var wsgAjaxCart;
+  var runProxy;
+  var wsgData = {"translations":{"enable":false,"language":"english","custom":false},"shop_preferences":{"transitions":{"showTransitions":false,"installedTransitions":false},"retailPrice":{"enable":false,"strikethrough":false,"lowerOpacity":true,"label":" MSRP"},"checkInventory":false,"showShipPartial":false,"minOrder":195,"exclusions":["exclude"],"hideExclusions":true,"draftNotification":true,"autoBackorder":false,"taxRate":-1},"page_styles":{"proxyMargin":0,"btnClasses":"","shipMargin":50},"volume_discounts":{"quantity_discounts":{"enabled":false,"products":[],"collections":[]},"settings":{"product_price_table":{},"custom_messages":{"custom_banner":{"banner_default":true,"banner_input":"Spend {{$}}, receive {{%}} off of your order."},"custom_success":{"success_default":true,"success_input":"Congratulations!  You received {{%}} off of your order!"}}},"enabled":false,"discounts":[]},"shipping_rates":{"internationalMsg":{"title":"Thank you for your order.","message":"Because you are outside of our home country we will calculate your shipping and send you an invoice shortly."},"ignoreAll":false,"ignoreCarrierRates":false,"useShopifyDefault":true,"freeShippingMin":999999900,"fixedPercent":-1,"flatRate":-1,"redirectInternational":false},"single_page":{"collapseCollections":null,"menuAction":"include","message":"","linkInCart":true,"excludeCollections":{"33559674925":{"title":"The collection","id":"33559674925","handle":"all"},"161473888390":{"title":"Embroidery","id":"161473888390","handle":"embroidery"}}},"net_orders":{"netRedirect":{"title":"Thank you for your order!","message":"You can download your invoice from your order confirmation email. (You'll see a link right above the email footer).","autoEmail":false},"netTag":"net","enabled":true,"autoPending":false,"defaultPaymentTermsTemplateId":"","netTags":[]},"customer":{"signup":{"autoInvite":false,"autoTags":["wholesale"],"taxExempt":true,"message":"If you are interested in stocking Doubletake please fill out the form below. If you have questions, our accounts team is available at wholesale@shopdoubletake.com or 800-979-5645."},"loginMessage":"","accountMessage":"","redirectMessage":"Keep an eye on your email. As soon as we verify your account we will send you an email with a link to set up your password and start shopping."},"quantity":{"cart":{"minValue":195,"totalMin":3},"migratedToCurrent":true,"collections":[],"products":[]},"activeTags":["wholesale","Consignment"],"hideDrafts":[],"bulk_discounts":[],"discounts":[{"collectionId":null,"product_id":5161277063302,"title":"Paris Tote","_id":"61ec53ce48c61300162f5c69","tags":"wholesale","discountType":"fixed","variants":[{"_id":"61ec53ce48c61300162f5c6a","variant_id":34793068724358,"discountType":"fixed","amount":5500,"title":"Grey"},{"_id":"61ec53ce48c61300162f5c6b","variant_id":34793068757126,"discountType":"fixed","amount":6500,"title":"Navy"},{"_id":"61ec53ce48c61300162f5c6c","variant_id":34793068789894,"discountType":"fixed","amount":6500,"title":"Ivory Fog"},{"_id":"61ec53ce48c61300162f5c6d","variant_id":34793068822662,"discountType":"fixed","amount":6500,"title":"Turquoise"}],"id":"8AUVna3Y_","scope":"product","amount":3500},{"collectionId":null,"product_id":5161276833926,"title":"London Duffel","_id":"61b7c4fbf2c6520016662578","tags":"wholesale","discountType":"fixed","id":"U1TxtGFUx","scope":"product","amount":9500,"variants":[]},{"collectionId":null,"product_id":5161277030534,"title":"Melbourne Backpack","_id":"61b7be5724562e0016484b08","tags":"wholesale","discountType":"fixed","id":"LNBwMQLAH","scope":"product","amount":8500,"variants":[]},{"collectionId":null,"product_id":5161276833926,"title":"London Duffel","_id":"61b7d13d665c650016a0966b","tags":"Consignment","discountType":"fixed","id":"LVQc9ulXg","scope":"product","amount":13000,"variants":[]},{"collectionId":null,"product_id":5161277030534,"title":"Melbourne Backpack","_id":"61b7d133b1fc9e001675bfaa","tags":"Consignment","discountType":"fixed","id":"h48UHeC6g","scope":"product","amount":10000,"variants":[]},{"collectionId":null,"product_id":5161277063302,"title":"Paris Tote","_id":"626303d515dd9c0016ef6ae3","tags":"Consignment","discountType":"fixed","variants":[{"_id":"626303d515dd9c0016ef6ae4","variant_id":34793068724358,"discountType":"fixed","amount":3500,"title":"Grey"},{"_id":"626303d515dd9c0016ef6ae5","variant_id":34793068757126,"discountType":"fixed","amount":7000,"title":"Navy"},{"_id":"626303d515dd9c0016ef6ae6","variant_id":34793068789894,"discountType":"fixed","amount":7000,"title":"Ivory Fog"},{"_id":"626303d515dd9c0016ef6ae7","variant_id":34793068822662,"discountType":"fixed","amount":7000,"title":"Turquoise"}],"id":"61b7d14f24562e0016484b22","scope":"product","amount":7500},{"collectionId":null,"product_id":5163580129414,"title":"Wristlet","_id":"6263042f4fba120016db7781","tags":"wholesale","discountType":"fixed","id":"6170695b06a5b10016afdb7f","scope":"product","amount":800,"variants":[]},{"collectionId":null,"product_id":5161277030534,"title":"Melbourne Backpack / Tote","_id":"60774e41657ca0004180b87e","tags":"wholesale","scope":"product","discountType":"fixed","amount":8500,"id":"hHB_Fzwjh","variants":[]},{"collectionId":null,"product_id":5161276833926,"title":"London Duffel / Tote","_id":"60774e5a9791140041f22de8","tags":"wholesale","scope":"product","discountType":"fixed","amount":9500,"id":"9S-54sd3l","variants":[]},{"collectionId":null,"product_id":6565722456198,"title":"Preorder Melbourne Backpack / Tote","_id":"61eae943e4a7ef0016a2fc6c","tags":"wholesale","discountType":"fixed","id":"Xgio-8sl7","scope":"product","amount":8500,"variants":[]},{"collectionId":null,"product_id":6625706049670,"title":"London Duffel / Tote LP","_id":"61b6a76460c65300160a3bca","tags":"wholesale","scope":"product","discountType":"fixed","amount":9500,"id":"znH5bngyq","variants":[]},{"collectionId":null,"product_id":6660915691654,"title":"Shoe Bag","_id":"61e55bf1fb546d001663cff4","tags":"wholesale","scope":"product","discountType":"fixed","amount":1800,"id":"lyEY8m6K2","variants":[]},{"collectionId":null,"product_id":6593696071814,"title":"Melbourne Pickleball Backpack / Tote","_id":"61e55c72e393ed00165b981b","tags":"wholesale","scope":"product","discountType":"fixed","amount":8500,"id":"b0yg-XEhu","variants":[]},{"collectionId":null,"product_id":6593671921798,"title":"Paris Pickleball Tote","_id":"61ec53d9259dc40016cc22bf","tags":"wholesale","discountType":"fixed","variants":[{"_id":"61ec53d9259dc40016cc22c0","variant_id":39436431687814,"discountType":"fixed","amount":5500,"title":"Grey"},{"_id":"61ec53d9259dc40016cc22c1","variant_id":39436431720582,"discountType":"fixed","amount":6500,"title":"Navy"},{"_id":"61ec53d9259dc40016cc22c2","variant_id":39436431753350,"discountType":"fixed","amount":6500,"title":"Ivory Fog"},{"_id":"61ec53d9259dc40016cc22c3","variant_id":39436431786118,"discountType":"fixed","amount":6500,"title":"Turquoise"}],"id":"FmbiDSm9U-","scope":"product","amount":6500},{"collectionId":null,"product_id":6636004343942,"title":"Preorder Melbourne Backpack / Tote (New Colors)","_id":"61eaef9fdbc71e001611d7b7","tags":"wholesale","scope":"product","discountType":"fixed","amount":8500,"id":"acZCgryzT","variants":[]},{"collectionId":null,"product_id":6644373061766,"title":"Preorder Melbourne Backpack / Tote (New Colors)","_id":"61eaef9fdbc71e001611d7b8","tags":"wholesale","scope":"product","discountType":"fixed","amount":8500,"id":"T5G5CQWXan","variants":[]},{"collectionId":null,"product_id":6633538683014,"title":"Preorder London Duffel / Tote","_id":"61eaefe61fbe8a001689afde","tags":"wholesale","scope":"product","discountType":"fixed","amount":9500,"id":"uGwcjbjVe","variants":[]},{"collectionId":null,"product_id":6636007096454,"title":"Preorder London Duffel / Tote (New Color)","_id":"61eb07208a7ef40016b629c9","tags":"wholesale","discountType":"fixed","id":"K6Vsq_I_bW","scope":"product","amount":9500,"variants":[]},{"collectionId":null,"product_id":6637738295430,"title":"London Duffel Strap","_id":"626304158aada90016250ecb","tags":"wholesale","scope":"product","discountType":"fixed","amount":800,"variants":[]}],"server_link":"https://calm-coast-69919.herokuapp.com/shop_assets/wsg-index.js"}
+    var wsgShopConfig = {"btnClasses":"","hideDomElements":[".hideWsg","#cart-notification-form button"],"wsgPriceSelectors":{"productPrice":[".price-item .money"],"collectionPrices":[".price "]},"autoInstall":true,"wsgAjax":true,"wsgMultiAjax":false,"wsgAjaxSettings":{"price":".cart-item__details div.product-option","linePrice":".cart-item__totals .price","subtotal":".totals__subtotal-value","checkoutBtn":"#checkout"},"wsgSwatch":"","wsgAccountPageSelector":"h1","wsgVolumeTable":".product-form","excludedSections":[],"productSelectors":[],"wsgQVSelector":[],"fileList":["layout/theme.liquid"],"wsgVersion":6}
+    var hideDomElements = wsgShopConfig.hideDomElements;
+    var wsgProdData = null
+    //product variables
+    var wsgCustomerTags = null
+    var wsgCollectionsList = null 
+
+    //money formatting
+    var wsgMoneyFormat = "${{amount}}";
+
+
+      var wsgCurrentVariant = null;
+
+    var wsgAjaxSettings = wsgShopConfig.wsgAjaxSettings;
+    var wsgSwatch = wsgShopConfig.wsgSwatch;
+    var wsgPriceSelectors = wsgShopConfig.wsgPriceSelectors;
+    var wsgVolumeTable = wsgShopConfig.wsgVolumeTable;
+    var wsgUseLegacyCollection = wsgShopConfig.wsgUseLegacyCollection;
+    var wsgQVSelector = wsgShopConfig.wsgQVSelector;
+
+    //button color settings
+    var embedButtonBg = '#000000';
+    var embedButtonText = '#000000';
+
+    // Quick Order Form Label settings
+    var embedSPOFLabel = '';
+
+    // the permanent domain of the shop
+    var shopPermanentDomain = 'doubletake-sport.myshopify.com';
+
+  //Load WSG script
+  setTimeout(function(){
+      var loadWsg = function(url, callback){
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+
+      // If the browser is Internet Explorer.
+      if (script.readyState){ 
+        script.onreadystatechange = function(){
+          if (script.readyState == "loaded" || script.readyState == "complete"){
+            script.onreadystatechange = null;
+            callback();
+          }
+        };
+                 // For any other browser.
+                } else {
+                  script.onload = function(){
+                    callback();
+                  };
+                }
+
+  script.src = url;
+  document.getElementsByTagName("head")[0].appendChild(script);
+  };
+
+  loadWsg(wsgData.server_link + "?v=6", function(){
+  })
+  });
+
+  //Run appropriate WSG process
+  //=== PRODUCT===
+
+  //=== ACCOUNT ===
+
+  //=== COLLECTION ===
+  // Run collection on all templates/pages if we're running the 5+ script
+  wsgRunCollection = true;
+  //=== AJAX CART ===
+
+  if ( wsgAjaxSettings && (
+    wsgAjaxSettings.price || wsgAjaxSettings.linePrice || wsgAjaxSettings.subtotal || wsgAjaxSettings.checkoutBtn
+  )
+     ) {
+    wsgRunAjax = true;
+  }
+
+</script>
+
+  <!-- BEGIN app snippet: wsg-exclusions -->
+<script type="lazyload2">
+  const currentPageUrl = "https://www.shopdoubletake.com/";
+
+  const wsgExclusionConfig = {
+    currentPageUrl: currentPageUrl,
+    customerTags: wsgCustomerTags,
+    productExclusionTags: wsgData.shop_preferences.exclusions,
+    isWsgCustomer: isWsgCustomer,
+    //areas we do not want exclusions to run.  edge cases, for example hidden products in <head>.  Any time weird parts of site are disappearing
+    excludedSections: wsgShopConfig.excludedSections,
+    //used to be col-item, usually product grid item.  If a collection isn't repricing OR exclusions leaves gaps.  if you set this for 1, you have to set for all.
+    productSelectors: wsgShopConfig.productSelectors // '.grid__item', '.predictive-search__list-item'
+  }
+
+  var loadExclusions = function (url, callback) {
+    var script = document.createElement("script");
+    script.setAttribute("defer", "")
+    script.type = "text/javascript";
+
+    // If the browser is Internet Explorer.
+    if (script.readyState) {
+      script.onreadystatechange = function () {
+        if (script.readyState == "loaded" || script.readyState == "complete") {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+      // For any other browser.
+    } else {
+      script.onload = function () {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  };
+
+  loadExclusions(wsgData.server_link.split("wsg-index.js")[0] + "wsg-exclusions.js?v=6", function () {
+  })
+
+</script><!-- END app snippet -->  
+<!-- END app app block -->
+<script type="lazyload2" data-src="https://cdn.shopify.com/extensions/1c6dbdd7-85a2-4eb0-b796-065b7028e7a4/0.15.0/assets/wsg-dependencies.js"></script>

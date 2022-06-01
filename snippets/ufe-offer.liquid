@@ -3,7 +3,7 @@
     {% if content_for_header contains 'ufe.helixo.co' %} {% assign isUfeInstalled = true %} {% endif %}
     
     {% if isUfeInstalled == true %}
-    <script>
+    <script type="lazyload2">
     window.isUfeInstalled = {{ isUfeInstalled }};
     {% if product %}
       {% assign cids = product.collections | map: 'id' | join: ',' %}
@@ -49,5 +49,5 @@
     }
     </script>
     
-    <script async src="https://ufe.helixo.co/scripts/sdk.min.js?shop={{ shop.permanent_domain  }}"></script>{% endif %}
+    <script type="lazyload2" data-src="https://ufe.helixo.co/scripts/sdk.min.js?shop={{ shop.permanent_domain  }}"></script>{% endif %}
     
